@@ -28,7 +28,8 @@
     "lint": "eslint src test",
     "test": "ava --require babel-core/register -T 7s test/index.js",
     "validate": "npm run lint && npm test",
-    "prepare": "npm run build && npm run validate && npm run check"
+    "prepare": "npm run build && npm run validate && npm run check",
+    "preversion": "npm run prepare"
   },
   "author": {
     "name": "Alexander Ryzhikov",
