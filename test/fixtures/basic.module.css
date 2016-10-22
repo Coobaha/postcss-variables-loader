@@ -1,0 +1,7 @@
+:root {
+  --size: 10em;
+}
+
+.module {
+  width: var(--size);
+}
