@@ -9,19 +9,19 @@
     <img src="https://img.shields.io/npm/l/postcss-variables-loader.svg" alt="License">
   </a>
 
-  <a href="https://github.com/coobaha/postcss-variables-loader/issues">
-    <img src="https://img.shields.io/github/issues/coobaha/postcss-variables-loader.svg" alt="Github Issues">
+  <a href="https://github.com/Coobaha/postcss-variables-loader/issues">
+    <img src="https://img.shields.io/github/issues/Coobaha/postcss-variables-loader.svg" alt="Github Issues">
   </a>
 
   
-  <a href="https://travis-ci.org/coobaha/postcss-variables-loader">
-    <img src="https://img.shields.io/travis/coobaha/postcss-variables-loader.svg" alt="Travis Status">
+  <a href="https://travis-ci.org/Coobaha/postcss-variables-loader">
+    <img src="https://img.shields.io/travis/Coobaha/postcss-variables-loader.svg" alt="Travis Status">
   </a>
   
 
   
-  <a href="https://coveralls.io/github/coobaha/postcss-variables-loader">
-    <img src="https://img.shields.io/coveralls/coobaha/postcss-variables-loader.svg" alt="Coveralls">
+  <a href="https://coveralls.io/github/Coobaha/postcss-variables-loader">
+    <img src="https://img.shields.io/coveralls/Coobaha/postcss-variables-loader.svg" alt="Coveralls">
   </a>
   
   
