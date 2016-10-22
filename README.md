@@ -38,7 +38,7 @@ yard add --dev postcss-variables-loader
 ```
 
 ```sh
-npm install --dev postcss-variables-loader
+npm install --save-dev postcss-variables-loader
 ```
 
 
