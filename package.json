@@ -39,9 +39,6 @@
     "validate"
   ],
   "dependencies": {
-    "eslint-config-standard": "^6.2.0",
-    "eslint-plugin-promise": "^3.3.0",
-    "eslint-plugin-standard": "^2.0.1",
     "lodash": "^4.16.4",
     "postcss": "^5.2.5",
     "postcss-cssnext": "^2.8.0",
@@ -62,6 +59,9 @@
     "babel-preset-stage-0": "^6.16.0",
     "coveralls": "^2.11.9",
     "eslint": "^3.8.1",
+    "eslint-config-standard": "^6.2.0",
+    "eslint-plugin-promise": "^3.3.0",
+    "eslint-plugin-standard": "^2.0.1",
     "loader-utils": "^0.2.16",
     "memory-fs": "^0.3.0",
     "nsp": "^2.2.0",
