@@ -92,6 +92,7 @@ const loader = function (source) {
   }
 
   const emitWarnings = (result) => {
+    result.warnings().forEach((msg) => this.emitWarning(msg.toString()))
     return result
   }
 
