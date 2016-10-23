@@ -1,5 +1,4 @@
 import test from 'ava'
-import 'babel-core/register'
 import runner from './helpers/runner'
 import runnerSync from './helpers/runner-sync'
 
