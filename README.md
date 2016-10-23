@@ -57,7 +57,7 @@ ES5 webpack config
 loaders: [
   {
     test: /\.config.css$/,
-    loader: 'postcss-variables-loaderes5=1'
+    loader: 'postcss-variables-loader?es5=1'
   }
 ]
 ```
