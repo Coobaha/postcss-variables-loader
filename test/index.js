@@ -1,6 +1,7 @@
 import test from 'ava'
 import 'babel-core/register'
 import runner from './helpers/runner'
+import runnerSync from './helpers/runner-sync'
 
 test('basic', async (t) => {
   const result = await runner('./basic.css')
@@ -36,4 +37,16 @@ test('works with @apply', async (t) => {
 
 test('handles cssSyntax errors', async (t) => {
   t.throws(runner('./wrongSyntax.css'), ([error]) => error.message.includes('Unclosed block'))
+})
+
+test('sync loader works', (t) => {
+  const result = runnerSync('./basic.css')
+
+  t.true(result.size === '10em')
+})
+
+test('sync loader works with es5 ', (t) => {
+  const result = runnerSync('./basic.css', { es5: true })
+
+  t.true(result.size === '10em')
 })
