@@ -28,6 +28,12 @@ test('imports drop', async (t) => {
   t.is(typeof result.size, 'undefined')
 })
 
+test('imports overwrite', async (t) => {
+  const result = await runner('./computedOverwrite.css')
+
+  t.true(result.size === '1rem')
+})
+
 test('works with @apply', async (t) => {
   const result = await runner('./apply.css')
 
@@ -48,4 +54,11 @@ test('sync loader works with es5 ', (t) => {
   const result = runnerSync('./basic.css', { es5: true })
 
   t.true(result.size === '10em')
+})
+
+test('works with multiple roots', async (t) => {
+  const result = await runner('./multipleRoots.css')
+
+  t.true(result.size === '11em')
+  t.true(result.color === 'violet')
 })

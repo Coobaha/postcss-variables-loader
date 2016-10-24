@@ -1,8 +1,5 @@
-import postcssJs from 'postcss-js'
 import compose from 'lodash/fp/compose'
-import get from 'lodash/fp/get'
 import cond from 'lodash/fp/cond'
-import lowerFirst from 'lodash/lowerFirst'
 import postcss from 'postcss'
 import cssnext from 'postcss-cssnext'
 import atImport from 'postcss-import'
@@ -10,25 +7,9 @@ import atImport from 'postcss-import'
 const isDev = () => process.env.NODE_ENV === 'development'
 const isProd = () => !isDev()
 
-const transform = (data) => {
-  if (!data) {
-    return {}
-  }
-  return Object
-    .keys(data)
-    .reduce((acc, k) => {
-      const v = data[k]
-
-      k = k.replace(/^-+/, '') // strips '-'
-      k = lowerFirst(k)
-      acc[k] = v.endsWith('px') ? parseInt(v, 10) : v
-      return acc
-    }, {})
-}
-
 const toProdExport = (code) => `export default ${code}`
 const toDevExport = (code) => `let config = ${code};
-if (typeof global.Proxy !== 'undefined') {
+if (typeof Proxy !== 'undefined') {
     config = new Proxy(config, {
         get(target, key) {
             if (key !== '__esModule' && !target[key]) {
@@ -52,21 +33,29 @@ const toExport = cond([
 ])
 
 const toString = (data) => `${JSON.stringify(data, null, '\t')}`
-const toData = compose(transform, get(':root'))
 
-export const toConfig = compose(toExport, toString, toData)
-export const toES5Config = compose(toES5Export, toString, toData)
+const objectify = (root, filepath) => {
+  const result = {}
 
-export const objectify = (root, filepath) => {
-  // removes imported rules, so we have only computed output
-  root.walkRules((r) => {
-    if (r.source.input.file !== filepath) {
-      r.remove()
+  if (!root) {
+    return result
+  }
+
+  root.walkDecls((rule) => {
+    if (rule.source.input.file !== filepath) {
+      return
+    }
+    if (rule.parent && rule.parent.selectors.find((sel) => sel === ':root')) {
+      const v = rule.value // replace "--"
+
+      result[rule.prop.replace(/^-+/, '')] = v.endsWith('px') ? parseInt(v, 10) : v
     }
   })
-  return postcssJs.objectify(root)
+  return result
 }
 
+export const toConfig = compose(toExport, toString, objectify)
+export const toES5Config = compose(toES5Export, toString, objectify)
 export const getPostcss = (async) => postcss()
   .use(atImport({ async }))
   .use(cssnext({ features: { customProperties: { preserve: 'computed' } } }))

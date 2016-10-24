@@ -11,11 +11,16 @@ export default function (source) {
 
   const transformToConfig = options.es5 ? utils.toES5Config : utils.toConfig
 
-  const end = (err, data = {}, map) => {
+  const end = (err, result, path, map) => {
     if (err) {
       _done(err)
     }
-    return _done(null, transformToConfig(data), map)
+
+    if (!result) {
+      return _done(null, {}, map)
+    }
+
+    return _done(null, transformToConfig(result.root, path), map)
   }
 
   const emitWarnings = (result) => {
@@ -35,6 +40,6 @@ export default function (source) {
   utils.getPostcss(true)
     .process(source, { from: this.resourcePath })
     .then(emitWarnings)
-    .then((result) => end(null, utils.objectify(result.root, this.resourcePath), result.map))
+    .then((result) => end(null, result, this.resourcePath, result.map))
     .catch(onError)
 }

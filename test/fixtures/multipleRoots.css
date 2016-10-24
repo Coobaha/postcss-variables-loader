@@ -1,0 +1,8 @@
+:root {
+  --size: 10em;
+}
+
+:root {
+  --size: 11em;
+  --color: violet;
+}

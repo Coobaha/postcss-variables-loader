@@ -1,0 +1,5 @@
+@import './basic.css';
+
+:root {
+  --size: 1rem;
+}
