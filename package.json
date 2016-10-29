@@ -7,8 +7,9 @@
     "lib/"
   ],
   "keywords": [
-    "css4",
     "css2js",
+    "css4",
+    "cssnext",
     "postcss",
     "postcss-plugin",
     "webpack",
@@ -39,6 +40,7 @@
     "validate"
   ],
   "dependencies": {
+    "loader-utils": "^0.2.16",
     "lodash": "^4.16.4",
     "postcss": "^5.2.5",
     "postcss-cssnext": "^2.8.0",
@@ -61,7 +63,6 @@
     "eslint-config-standard": "^6.2.0",
     "eslint-plugin-promise": "^3.3.0",
     "eslint-plugin-standard": "^2.0.1",
-    "loader-utils": "^0.2.16",
     "memory-fs": "^0.3.0",
     "nsp": "^2.2.0",
     "nyc": "^8.3.2",

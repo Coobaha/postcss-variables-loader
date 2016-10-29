@@ -46,9 +46,10 @@ const objectify = (root, filepath) => {
       return
     }
     if (rule.parent && rule.parent.selectors.find((sel) => sel === ':root')) {
-      const v = rule.value // replace "--"
+      const { value } = rule
+      const key = rule.prop.replace(/^-+/, '') // replace "--"
 
-      result[rule.prop.replace(/^-+/, '')] = v.endsWith('px') ? parseInt(v, 10) : v
+      result[key] = value.endsWith('px') ? parseInt(value, 10) : value
     }
   })
   return result
