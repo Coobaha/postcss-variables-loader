@@ -34,7 +34,7 @@ Allows you to share variables between CSS and JS with Webpack and HMR.
 ## Install
 
 ```sh
-yard add --dev postcss-variables-loader
+yarn add --dev postcss-variables-loader
 ```
 
 ```sh
