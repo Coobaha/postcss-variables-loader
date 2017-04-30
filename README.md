@@ -48,6 +48,13 @@ loaders: [
   {
     test: /\.config.css$/,
     loader: 'babel-loader!postcss-variables-loader'
+  },
+ 
+  // dont forget to exclude *.config.css from other css loaders
+  {
+    test: /\.css$/,
+    exclude: /\.config.css$/, 
+    loader: 'css-loader'
   }
 ]
 ```
@@ -58,6 +65,13 @@ loaders: [
   {
     test: /\.config.css$/,
     loader: 'postcss-variables-loader?es5=1'
+  },
+  
+  // dont forget to exclude *.config.css from other css loaders
+  {
+    test: /\.css$/,
+    exclude: /\.config.css$/, 
+    loader: 'css-loader'
   }
 ]
 ```
