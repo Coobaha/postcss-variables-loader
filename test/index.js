@@ -16,9 +16,14 @@ test('works with es5 option', async (t) => {
 
 test('px strip', async (t) => {
   const result = await runner('./pxstrip.css')
-  const expected = 10
 
-  t.is(result.size, expected)
+  t.is(result.size, 10)
+})
+
+test('px strip ignores multiple px values', async (t) => {
+  const result = await runner('./pxstrip.css')
+
+  t.is(result.padding, '10px 10px')
 })
 
 test('imports drop', async (t) => {

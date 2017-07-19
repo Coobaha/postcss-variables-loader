@@ -49,7 +49,7 @@ const objectify = (root, filepath) => {
       const { value } = rule
       const key = rule.prop.replace(/^-+/, '') // replace "--"
 
-      result[key] = value.endsWith('px') ? parseInt(value, 10) : value
+      result[key] = value.match(/^[+-]?\d*.?(\d*)?(px)$/i) ? parseFloat(value) : value
     }
   })
   return result
