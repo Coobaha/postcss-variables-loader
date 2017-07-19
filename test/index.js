@@ -45,6 +45,13 @@ test('works with @apply', async (t) => {
   t.deepEqual(result, {})
 })
 
+test('converts kebab case', async (t) => {
+  const result = await runner('./convertedCase.css')
+
+  t.not(result.sizeVariable, undefined)
+  t.is(result['size-variable'], undefined)
+})
+
 test('handles cssSyntax errors', async (t) => {
   t.throws(runner('./wrongSyntax.css'), ([error]) => error.message.includes('Unclosed block'))
 })

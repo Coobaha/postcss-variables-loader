@@ -1,4 +1,5 @@
 import compose from 'lodash/fp/compose'
+import camelCase from 'lodash/fp/camelCase'
 import cond from 'lodash/fp/cond'
 import postcss from 'postcss'
 import cssnext from 'postcss-cssnext'
@@ -47,7 +48,9 @@ const objectify = (root, filepath) => {
     }
     if (rule.parent && rule.parent.selectors.find((sel) => sel === ':root')) {
       const { value } = rule
-      const key = rule.prop.replace(/^-+/, '') // replace "--"
+      const key = camelCase(
+        rule.prop.replace(/^-+/, '') // replace "--"
+      )
 
       result[key] = value.match(/^[+-]?\d*.?(\d*)?(px)$/i) ? parseFloat(value) : value
     }
