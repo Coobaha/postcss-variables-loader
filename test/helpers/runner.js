@@ -5,12 +5,12 @@ import path from 'path'
 const loaderPath = path.resolve(__dirname, '../../src/lib/index.js')
 
 export default async (fixture, { es5 } = {}) => {
-  const babelString = es5 ? '' : 'babel!'
+  const babelString = es5 ? '' : 'babel-loader!'
   const loaderOptions = es5 ? '?es5=1' : ''
   const webpackConfig = {
     target: 'node',
-    context: __dirname,
-    entry: './entry.js',
+    context: path.resolve(__dirname, '../..'),
+    entry: './test/helpers/entry.js',
     module: {
       loaders: [
         {
