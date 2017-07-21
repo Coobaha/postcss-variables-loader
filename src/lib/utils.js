@@ -1,5 +1,4 @@
 import compose from 'lodash/fp/compose'
-import camelCase from 'lodash/fp/camelCase'
 import cond from 'lodash/fp/cond'
 import postcss from 'postcss'
 import cssnext from 'postcss-cssnext'
@@ -35,6 +34,9 @@ const toExport = cond([
 
 const toString = (data) => `${JSON.stringify(data, null, '\t')}`
 
+const dashesCamelCase = str =>
+  str.replace(/-+(\w)/g, (match, firstLetter) => firstLetter.toUpperCase())
+
 const objectify = (root, filepath) => {
   const result = {}
 
@@ -48,7 +50,7 @@ const objectify = (root, filepath) => {
     }
     if (rule.parent && rule.parent.selectors.find((sel) => sel === ':root')) {
       const { value } = rule
-      const key = camelCase(
+      const key = dashesCamelCase(
         rule.prop.replace(/^-+/, '') // replace "--"
       )
 

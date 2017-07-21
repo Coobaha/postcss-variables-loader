@@ -51,6 +51,13 @@ test('converts kebab case', async (t) => {
   t.is(result['size-variable'], undefined)
 })
 
+test('converts only dashes', async (t) => {
+  const result = await runner('./convertedCase.css')
+
+  t.not(result.colorRGBA, undefined)
+  t.is(result['color-RGBA'], undefined)
+})
+
 test('handles cssSyntax errors', async (t) => {
   t.throws(runner('./wrongSyntax.css'), ([error]) => error.message.includes('Unclosed block'))
 })
