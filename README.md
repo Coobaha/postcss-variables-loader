@@ -42,7 +42,7 @@ npm install --save-dev postcss-variables-loader
 ```
 
 
-Hipster webpack config (with babel-loader)
+Webpack with babel-loader
 ```
 loaders: [
   {
