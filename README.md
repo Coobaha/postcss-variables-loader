@@ -30,8 +30,8 @@
 <p align="center"><big>
 Allows you to share variables between CSS and JS with Webpack and HMR.
 </big></p>
-
-
+<h1></h1>
+<br>
 This loader transforms special CSS files to JS modules.
 
 * Shared variables between CSS and JS
