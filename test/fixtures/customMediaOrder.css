@@ -1,0 +1,10 @@
+:root {
+  --small-viewport: i am here;
+}
+
+@custom-media --small-viewport (max-width: 30em);
+@custom-media --viewport (max-width: 30em);
+
+:root {
+  --viewport: i am here;
+}

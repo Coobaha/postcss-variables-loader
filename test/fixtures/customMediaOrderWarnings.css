@@ -1,0 +1,12 @@
+@import './basic.css';
+:root {
+  --size: 10em;
+  --custom: 1;
+}
+
+@custom-media --custom (max-width: 30em);
+@custom-media --small (max-width: 30em);
+
+:root {
+  --small: 10em;
+}

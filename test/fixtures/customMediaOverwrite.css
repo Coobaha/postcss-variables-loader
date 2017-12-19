@@ -1,0 +1,2 @@
+@import './customMedia.css';
+@custom-media --viewport (max-width: 31em);

@@ -30,7 +30,16 @@ export default async (fixture, { es5 } = {}) => {
       }
     }
   }
-  const files = await load(webpack(webpackConfig))
+  const compiler = webpack(webpackConfig)
+  let stats
+  compiler.plugin('emit', function (curCompiler, callback) {
+    stats = curCompiler.getStats().toJson()
+    callback()
+  })
+  const files = await load(compiler)
 
-  return files[webpackConfig.output.filename]
+  return {
+    result: files[webpackConfig.output.filename],
+    warnings: stats.warnings
+  }
 }

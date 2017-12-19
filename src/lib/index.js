@@ -20,15 +20,17 @@ export default function (source) {
       return _done(null, {}, map)
     }
 
-    return _done(null, transformToConfig(result.root, path), map)
+    const obj = transformToConfig(result, path)
+    emitWarnings(result)
+    return _done(null, obj, map)
   }
 
-  const emitWarnings = (result) => {
-    result.warnings().forEach((msg) => this.emitWarning(msg.toString()))
+  const emitWarnings = result => {
+    result.warnings().forEach(msg => this.emitWarning(msg.toString()))
     return result
   }
 
-  const onError = (error) => {
+  const onError = error => {
     if (error.name === 'CssSyntaxError') {
       this.emitError(error.message + error.showSourceCode())
       end()
@@ -37,9 +39,9 @@ export default function (source) {
     }
   }
 
-  utils.getPostcss(true)
+  utils
+    .getPostcss(true)
     .process(source, { from: this.resourcePath })
-    .then(emitWarnings)
-    .then((result) => end(null, result, this.resourcePath, result.map))
+    .then(result => end(null, result, this.resourcePath, result.map))
     .catch(onError)
 }
