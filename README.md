@@ -38,7 +38,7 @@ This loader transforms special CSS files to JS modules.
 
 To be more JS friendly loader will:
 
-* strip `px` part from css px numbers
+* strip `px` part from CSS px numbers
 * convert dashes-case to camelCase
 * check for runtime config mutations and access of missing keys (only in dev or es6 mode)
 
