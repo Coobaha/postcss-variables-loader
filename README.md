@@ -31,6 +31,67 @@
 Allows you to share variables between CSS and JS with Webpack and HMR.
 </big></p>
 
+
+This loader transforms special CSS files to JS modules.
+
+* Shared variables between CSS and JS
+* HMR friendly, CSS changes are applied on the fly.
+
+To be more JS friendly loader will:
+
+* strip `px` part from css px numbers
+* convert dashes-case to camelCase
+* check for runtime config mutations and access of missing keys (only in dev or es6 mode)
+
+## Usage
+
+```css
+/* variables.config.css */
+
+@custom-media --small-device (max-width: 480px))
+:root {
+  --primary-color: blue;
+  --gutter: 30px;
+}
+```
+
+```css
+/* component.css  */
+
+@import 'colors.config.css'
+
+.component {
+  color: var(--primary-color);
+  margin: 0 var(--gutter);
+}
+
+@media (--small-device) {
+  /* styles for small viewport */
+}
+
+```
+
+```js
+// component.js
+import variables from 'colors.config.css';
+
+console.log(variables);
+/*
+  variables = {
+    primaryColor: 'blue';
+    gutter: 30;
+    smallDevice: '(max-width: 480px)'
+  }
+*/
+
+component.style.color = variables.primaryColor;
+
+function add5ToGutter() {
+  return 5 + variables.gutter;
+}
+```
+
+
 ## Install
 
 ```sh
@@ -41,8 +102,12 @@ yarn add --dev postcss-variables-loader
 npm install --save-dev postcss-variables-loader
 ```
 
+**NB**: You need to process CSS somehow (eg [postcss](https://github.com/postcss/postcss))
+ and imports inside css (eg via [postcss-import](https://github.com/postcss/postcss-import))
 
-Webpack with babel-loader
+
+**Recommended webpack configuration**: 
+`webpack.config.js` with babel-loader
 ```
 loaders: [
   {
@@ -54,52 +119,18 @@ loaders: [
   {
     test: /\.css$/,
     exclude: /\.config.css$/, 
-    loader: 'css-loader'
+    loader: 'css-loader!postcss-loader'
   }
 ]
 ```
 
-ES5 webpack config
-```
-loaders: [
-  {
-    test: /\.config.css$/,
-    loader: 'postcss-variables-loader?es5=1'
-  },
-  
-  // dont forget to exclude *.config.css from other css loaders
-  {
-    test: /\.css$/,
-    exclude: /\.config.css$/, 
-    loader: 'css-loader'
-  }
-]
-```
-## Usage
+## Options
 
-```
+if `production.env.NODE_ENV === 'development'` it will try to wrap config inside `Proxy` in runtime. 
+It is used to guard from accidental mutations or accessing missing keys.
+If you dont want this behaviour: pass `es5=1`:
 
-# config/colors.config.css
-:root {
-  --primaryColor: blue;
-}
-
-
-
-# component.css (works with pre-processors too)
-@import 'config/colors.config.css' // via postcss-import for example
-
-.component {
-  color: var(--primaryColor);
-}
-
-
-
-# component.js
-import colors from 'config/colors.config.css';
-
-component.style.color = colors.primaryColor;
-```
+`loader: 'postcss-variables-loader?es5=1'`
 
 ## License
 
