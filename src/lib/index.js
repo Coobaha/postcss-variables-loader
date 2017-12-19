@@ -26,7 +26,7 @@ export default function (source) {
   }
 
   const emitWarnings = result => {
-    result.warnings().forEach(msg => this.emitWarning(msg.toString()))
+    result.warnings().forEach(msg => this.emitWarning(new Error(msg.toString())))
     return result
   }
 
