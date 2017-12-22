@@ -85,11 +85,11 @@ test('emits warnings when custom-media and css variables are replaced', async t 
 
   t.true(warnings.length === 2)
   t.regex(
-    warnings[0],
+    warnings[0].split('\n')[1],
     /Existing exported CSS variable was replaced by @custom-media variable \[--custom]/
   )
   t.regex(
-    warnings[1],
+    warnings[1].split('\n')[1],
     /Existing exported @custom-media variable was replaced by CSS variable \[--small]/
   )
 })
@@ -111,11 +111,11 @@ test('emits warning for circular referenced custom media', async t => {
 
   t.true(warnings.length === 2)
   t.regex(
-    warnings[0],
+    warnings[0].split('\n')[1],
     /Circular @custom-media definition for \[--a]. The entire rule has been removed from the output./
   )
   t.regex(
-    warnings[1],
+    warnings[1].split('\n')[1],
     /Circular @custom-media definition for \[--b]. The entire rule has been removed from the output./
   )
 })

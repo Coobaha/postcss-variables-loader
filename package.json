@@ -29,7 +29,7 @@
     "lint": "eslint src test",
     "test": "ava --require babel-core/register -T 7s test/index.js",
     "validate": "npm run lint && npm test",
-    "prepare": "npm run build && npm run validate && npm run check"
+    "prepare": "npm run build && npm run validate"
   },
   "author": {
     "name": "Alexander Ryzhikov",
@@ -64,7 +64,7 @@
     "eslint-plugin-promise": "^3.3.0",
     "eslint-plugin-standard": "^2.0.1",
     "memory-fs": "^0.4.1",
-    "nsp": "^2.6.3",
+    "nsp": "^3.1.0",
     "nyc": "^11.0.3",
     "pre-commit": "^1.1.3",
     "webpack": "^3.3.0",
