@@ -21,7 +21,7 @@
     "url": "https://github.com/coobaha/postcss-variables-loader"
   },
   "scripts": {
-    "audit": "nsp check package",
+    "audit": "nsp check",
     "build": "babel -d ./ ./src",
     "check": "npm run audit",
     "coverage": "nyc --reporter=lcov --reporter=text --reporter=html npm test",
@@ -29,7 +29,7 @@
     "lint": "eslint src test",
     "test": "ava --require babel-core/register -T 7s test/index.js",
     "validate": "npm run lint && npm test",
-    "prepare": "npm run build && npm run validate"
+    "prepare": "npm run build && npm run validate && nsp check"
   },
   "author": {
     "name": "Alexander Ryzhikov",
