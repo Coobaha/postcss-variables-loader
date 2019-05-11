@@ -147,6 +147,7 @@ export const getPostcss = async =>
     .use(atImport({ async }))
     .use(
       cssnext({
+        browsers: ['last 2 versions'],
         features: { customProperties: { preserve: 'computed' }, customMedia: { preserve: true } }
       })
     )
