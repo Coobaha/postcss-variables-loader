@@ -2,9 +2,9 @@ language: node_js
 node_js:
   - "8"
   - "6"
-cache: yarn
+cache: npm
 install:
-  - yarn
+  - npm install
 script:
   - npm run check
   - npm run build

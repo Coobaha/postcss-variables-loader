@@ -21,7 +21,6 @@
     "url": "https://github.com/coobaha/postcss-variables-loader"
   },
   "scripts": {
-    "audit": "nsp check",
     "build": "babel -d ./ ./src",
     "check": "npm run audit",
     "coverage": "nyc --reporter=lcov --reporter=text --reporter=html npm test",
@@ -29,7 +28,7 @@
     "lint": "eslint src test",
     "test": "ava --require babel-core/register -T 7s test/index.js",
     "validate": "npm run lint && npm test",
-    "prepare": "npm run build && npm run validate && nsp check"
+    "prepare": "npm run build && npm run validate"
   },
   "author": {
     "name": "Alexander Ryzhikov",
@@ -41,15 +40,15 @@
   ],
   "dependencies": {
     "loader-utils": "^0.2.16",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.11",
     "postcss": "^6.0.8",
     "postcss-cssnext": "^3.0.2",
     "postcss-import": "^10.0.0"
   },
   "devDependencies": {
     "ava": "^0.16.0",
-    "babel-cli": "^6.24.1",
-    "babel-core": "^6.25.0",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
     "babel-eslint": "^7.2.3",
     "babel-loader": "^6.2.5",
     "babel-plugin-add-module-exports": "^0.2.1",
@@ -58,14 +57,13 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-latest": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
-    "coveralls": "^2.13.1",
+    "coveralls": "^3.0.3",
     "eslint": "^4.2.0",
     "eslint-config-standard": "^6.2.0",
     "eslint-plugin-promise": "^3.3.0",
     "eslint-plugin-standard": "^2.0.1",
     "memory-fs": "^0.4.1",
-    "nsp": "^3.1.0",
-    "nyc": "^11.0.3",
+    "nyc": "^14.1.1",
     "pre-commit": "^1.1.3",
     "webpack": "^3.3.0",
     "webpack-to-memory": "^1.0.0"
