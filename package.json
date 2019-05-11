@@ -22,7 +22,6 @@
   },
   "scripts": {
     "build": "babel -d ./ ./src",
-    "check": "npm run audit",
     "coverage": "nyc --reporter=lcov --reporter=text --reporter=html npm test",
     "coveralls": "npm run coverage && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage",
     "lint": "eslint src test",

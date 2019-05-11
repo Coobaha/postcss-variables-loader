@@ -6,7 +6,6 @@ cache: npm
 install:
   - npm install
 script:
-  - npm run check
   - npm run build
   - npm run validate
 after_success:
