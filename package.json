@@ -1,5 +1,5 @@
 {
-  "version": "5.0.2",
+  "version": "6.0.0",
   "name": "postcss-variables-loader",
   "description": "Share variables between CSS and JS with Webpack + HMR",
   "main": "lib/index.js",
