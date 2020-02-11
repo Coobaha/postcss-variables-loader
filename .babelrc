@@ -1,10 +1,14 @@
 {
   "presets": [
-    "latest",
-    "stage-0"
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "esmodules": true,
+          "node": "current"
+        }
+      }
+    ]
   ],
-  "plugins": [
-    "transform-runtime",
-    "add-module-exports"
-  ]
+  "plugins": []
 }

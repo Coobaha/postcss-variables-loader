@@ -9,10 +9,11 @@ export default async (fixture, { es5 } = {}) => {
   const loaderOptions = es5 ? '?es5=1' : ''
   const webpackConfig = {
     target: 'node',
+    mode: 'development',
     context: path.resolve(__dirname, '../..'),
     entry: './test/helpers/entry.js',
     module: {
-      loaders: [
+      rules: [
         {
           test: /\.css$/,
           loader: `${babelString}${loaderPath}${loaderOptions}`
@@ -32,14 +33,15 @@ export default async (fixture, { es5 } = {}) => {
   }
   const compiler = webpack(webpackConfig)
   let stats
-  compiler.plugin('emit', function (curCompiler, callback) {
-    stats = curCompiler.getStats().toJson()
-    callback()
+  compiler.hooks.done.tap('PostcssVariablesLoader', function (s) {
+    stats = s.toJson()
   })
   const files = await load(compiler)
 
+  const m = files[webpackConfig.output.filename]
+
   return {
-    result: files[webpackConfig.output.filename],
+    result: m.default ? m.default : m,
     warnings: stats.warnings
   }
 }

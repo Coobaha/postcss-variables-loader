@@ -1,12 +1,12 @@
 import loaderUtils from 'loader-utils'
 import * as utils from './utils'
 
-export default function (source) {
+export default function PostcssVariablesLoader (source) {
   if (this.cacheable) {
     this.cacheable()
   }
 
-  const options = loaderUtils.parseQuery(this.query)
+  const options = loaderUtils.getOptions(this) || {}
   const _done = this.async()
 
   const transformToConfig = options.es5 ? utils.toES5Config : utils.toConfig

@@ -13,18 +13,18 @@
     <img src="https://img.shields.io/github/issues/Coobaha/postcss-variables-loader.svg" alt="Github Issues">
   </a>
 
-  
+
   <a href="https://travis-ci.org/Coobaha/postcss-variables-loader">
     <img src="https://img.shields.io/travis/Coobaha/postcss-variables-loader.svg" alt="Travis Status">
   </a>
-  
 
-  
+
+
   <a href="https://coveralls.io/github/Coobaha/postcss-variables-loader">
     <img src="https://img.shields.io/coveralls/Coobaha/postcss-variables-loader.svg" alt="Coveralls">
   </a>
-  
-  
+
+
 </p>
 
 <p align="center"><big>
@@ -105,19 +105,19 @@ npm install --save-dev postcss-variables-loader
  and imports inside css (eg via [postcss-import](https://github.com/postcss/postcss-import))
 
 
-**Recommended webpack configuration**: 
+**Recommended webpack configuration**:
 `webpack.config.js` with babel-loader
 ```
-loaders: [
+rules: [
   {
     test: /\.config.css$/,
     loader: 'babel-loader!postcss-variables-loader'
   },
- 
+
   // dont forget to exclude *.config.css from other css loaders
   {
     test: /\.css$/,
-    exclude: /\.config.css$/, 
+    exclude: /\.config.css$/,
     loader: 'css-loader!postcss-loader'
   }
 ]
@@ -125,7 +125,7 @@ loaders: [
 
 ## Options
 
-if `production.env.NODE_ENV === 'development'` it will try to wrap config inside `Proxy` in runtime. 
+if `production.env.NODE_ENV === 'development'` it will try to wrap config inside `Proxy` in runtime.
 It is used to guard from accidental mutations or accessing missing keys.
 If you dont want this behaviour: pass `es5=1`:
 
